@@ -52,7 +52,7 @@ Specifies the listen address (interface & port number) for the server to listen 
 
 ### -storage, -storage-dsn, & -storage-options
 
-The `-storage`, `-storage-dsn`, and `-storage-options` flags together configure the storage backend. `-storage` specifies the name of backend type while `-storage-dsn` specifies the backend data source name (e.g. the connection string). The optional `-storage-options` flag specifies options for the backend if it supports them. If no `-storage` backend is specified then `file` is used as a default. 
+The `-storage`, `-storage-dsn`, and `-storage-options` flags together configure the storage backend. `-storage` specifies the name of backend type while `-storage-dsn` specifies the backend data source name (e.g. the connection string). The optional `-storage-options` flag specifies options for the backend if it supports them. If no `-storage` backend is specified then `file` is used as a default.
 
 #### file backend
 
@@ -69,7 +69,7 @@ Configure the `file` storage backend. This backend manages MDM, DM, and workflow
 Configures the MySQL storage backend. The `-storage-dsn` flag should be in the [format the SQL driver expects](https://github.com/go-sql-driver/mysql#dsn-data-source-name).
 Be sure to create the storage tables with the `schema.sql` file from *each* of the three NanoMDM, NanoCMD, and KMFDDM projects. MySQL 8.0.19 or later is required.
 
-*Example:* `-storage mysql -dsn nanohub:nanohub/mydb`
+*Example:* `-storage mysql -storage-dsn nanohub:nanohub/mydb`
 
 #### inmem backend
 
@@ -170,7 +170,7 @@ If enabled with the `-checkin` switch the check-in handler handles MDM check-ins
 
 If enabled with the `-migration` switch this will allow MDM check-ins using just the supplied `-api-key` switch for authentication. In this way we effectively support MDM "migration."
 
-### Migration
+### Authproxy
 
 * Endpoint(s): `/authproxy/`
 
