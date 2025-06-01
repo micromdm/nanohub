@@ -1,11 +1,11 @@
 module github.com/micromdm/nanohub
 
-go 1.19
+go 1.21.0
 
 require (
 	github.com/alexedwards/flow v0.0.0-20220806114457-cf11be9e0e03
 	github.com/cespare/xxhash v1.1.0
-	github.com/go-sql-driver/mysql v1.8.1
+	github.com/go-sql-driver/mysql v1.9.2
 	github.com/jessepeterson/kmfddm v0.8.0
 	github.com/micromdm/nanocmd v0.6.0
 	github.com/micromdm/nanolib v0.3.0
