@@ -142,11 +142,12 @@ Print version and exit.
 NanoHUB's reference server simply "mounts" each components' API under its own webserver. For example:
 
 * The normal NanoMDM API is available under the `/api/v1/nanomdm/` path.
-  * For example to send an APNs push to ID `9876-5432-1012` you would send a request to `http://example.com/api/v1/nanomdm/push/9876-5432-1012` using the NanoHUB API key and normal NanoMDM HTTP API semantics.
+  * For example to send an APNs push to ID `9876-5432-1012` you would send a request to `http://example.com:9004/api/v1/nanomdm/push/9876-5432-1012` using the NanoHUB API key and normal NanoMDM HTTP API semantics.
 * The normal NanoCMD API is avilable under the `/api/v1/nanocmd/` path.
-  * For example to start the workflow [io.micromdm.wf.devinfolog.v1](https://github.com/micromdm/nanocmd/blob/main/docs/operations-guide.md#device-information-logger-workflow) on ID `9876-5432-1012` you would send a POST request to `http://example.com/api/v1/nanocmd/workflow/io.micromdm.wf.devinfolog.v1/start?id=9876-5432-1012` using the NanoHUB API key and normal NanoCMD HTTP API semantics.
+  * For example to start the workflow [io.micromdm.wf.devinfolog.v1](https://github.com/micromdm/nanocmd/blob/main/docs/operations-guide.md#device-information-logger-workflow) on ID `9876-5432-1012` you would send a POST request to `http://example.com:9004/api/v1/nanocmd/workflow/io.micromdm.wf.devinfolog.v1/start?id=9876-5432-1012` using the NanoHUB API key and normal NanoCMD HTTP API semantics.
+  * This also includes the "subsystem" API endpoints. For example to retrieve the FileVault Enable profile template you would send a GET to `http://example.com:9004/api/v1/nanocmd/fvenable/profiletemplate`.
 * The normal KMFDDM API is availabl under the `/api/v1/ddm/` path.
-  * For example to retrieve a list of declarations you would send a GET to `http://example.com/api/v1/ddm/declarations` using the NanoHUB API key and normal KMFDDM HTTP API semantics.
+  * For example to retrieve a list of declarations you would send a GET to `http://example.com:9004/api/v1/ddm/declarations` using the NanoHUB API key and normal KMFDDM HTTP API semantics.
 
 Note that some of these projects have helper tools and scripts which may need to be informed of both the new URL and the NanoHUB API username. Check those individual projects tools to see how to change those settings if they support doing that.
 

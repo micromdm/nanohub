@@ -122,13 +122,14 @@ func main() {
 		}
 	}
 
+	var subsysStore *subsystemStorage
 	if cmdstore != nil {
 		hubOpts = append(hubOpts,
 			nanohub.WithWF(cmdstore),
 			nanohub.WithWFEvents(cmdstore),
 		)
 
-		subsysStore, err := SubsystemStorage(*flStorage, *flDSN)
+		subsysStore, err = SubsystemStorage(*flStorage, *flDSN)
 		if err != nil {
 			logger.Info("err", err)
 			os.Exit(1)
@@ -226,7 +227,10 @@ func main() {
 
 		cmdMux := flow.New()
 		cmdMux.Use(authMW)
+		// register engine endpoints
 		cmdenghttp.HandleAPIv1("", cmdMux, logger, nh.Engine(), cmdstore)
+		// register subsystem endpoints
+		handleSubsystemAPIs("", cmdMux, logger, subsysStore)
 		mux.Handle("/api/v1/nanocmd/",
 			http.StripPrefix("/api/v1/nanocmd", cmdMux),
 		)
