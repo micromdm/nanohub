@@ -14,8 +14,8 @@ github.com/google/btree v1.1.2/go.mod h1:qOPhT0dTNdNzV6Z/lhRX0YXUafgPLFUh+gZMl76
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/jessepeterson/kmfddm v0.8.0 h1:B5s/GJPpM1kg0JmXEyqmtP38d4adjKWS0twMl24J62A=
-github.com/jessepeterson/kmfddm v0.8.0/go.mod h1:7icSwLUOMnfuWH8G1naKMKrsqCQOh68pURPh6NSYCbg=
+github.com/jessepeterson/kmfddm v0.8.1 h1:um1kI4HqtORm4ikCc1EXYiJItxXGD+P/85hRFhBOal0=
+github.com/jessepeterson/kmfddm v0.8.1/go.mod h1:7icSwLUOMnfuWH8G1naKMKrsqCQOh68pURPh6NSYCbg=
 github.com/jessepeterson/mdmcommands v0.0.0-20241219204234-98d1786612cb h1:FoogRFig9r1aMbccC4MU496/we/QpN//qGhe0fLcLUk=
 github.com/jessepeterson/mdmcommands v0.0.0-20241219204234-98d1786612cb/go.mod h1:EHxwKfMUtf7wNjF19BQQ/XCOvh62vbOXTggS9guNVxY=
 github.com/micromdm/nanocmd v0.6.0 h1:z/zOnO75o9d+GjIPdkHYcxzXcDe/VyroyOB+6EmCI2I=
