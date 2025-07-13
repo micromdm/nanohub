@@ -15,6 +15,7 @@ import (
 	"github.com/alexedwards/flow"
 	"github.com/jessepeterson/kmfddm/ddm"
 	ddmapi "github.com/jessepeterson/kmfddm/http/api"
+	ddmhttp "github.com/jessepeterson/kmfddm/http/ddm"
 	"github.com/micromdm/nanocmd/engine"
 	cmdenghttp "github.com/micromdm/nanocmd/engine/http"
 	nanolibhttp "github.com/micromdm/nanolib/http"
@@ -238,6 +239,23 @@ func main() {
 		ddmMux := flow.New()
 		ddmMux.Use(authMW)
 		ddmapi.HandleAPIv1("", ddmMux, logger, dmStore, nh.DMNotifier())
+		ddmMux.Handle(
+			"/declaration-items",
+			ddmhttp.TokensOrDeclarationItemsHandler(dmStore, false, logger.With("handler", "declaration-items")),
+			"GET",
+		)
+		ddmMux.Handle(
+			"/tokens",
+			ddmhttp.TokensOrDeclarationItemsHandler(dmStore, true, logger.With("handler", "tokens")),
+			"GET",
+		)
+		ddmMux.Handle(
+			"/declaration/:type/:id",
+			http.StripPrefix("/declaration/",
+				ddmhttp.DeclarationHandler(dmStore, logger.With("handler", "declaration")),
+			),
+			"GET",
+		)
 		mux.Handle("/api/v1/ddm/",
 			http.StripPrefix("/api/v1/ddm", ddmMux),
 		)
