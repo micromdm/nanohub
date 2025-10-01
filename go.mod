@@ -8,7 +8,7 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/jessepeterson/kmfddm v0.8.1
 	github.com/micromdm/nanocmd v0.6.0
-	github.com/micromdm/nanolib v0.3.0
+	github.com/micromdm/nanolib v0.4.0
 	github.com/micromdm/nanomdm v0.8.0
 	github.com/micromdm/plist v0.2.1
 	github.com/valyala/fastjson v1.6.4
