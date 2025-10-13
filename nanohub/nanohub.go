@@ -26,9 +26,9 @@ import (
 	nanoservice "github.com/micromdm/nanomdm/service"
 	"github.com/micromdm/nanomdm/service/certauth"
 	"github.com/micromdm/nanomdm/service/dump"
-	"github.com/micromdm/nanomdm/service/microwebhook"
 	"github.com/micromdm/nanomdm/service/multi"
 	"github.com/micromdm/nanomdm/service/nanomdm"
+	"github.com/micromdm/nanomdm/service/webhook"
 	nanostorage "github.com/micromdm/nanomdm/storage"
 )
 
@@ -217,7 +217,7 @@ func New(store Store, opts ...Option) (*NanoHUB, error) {
 	if len(config.webhookURLs) >= 1 {
 		// configure any webhooks
 		for _, url := range config.webhookURLs {
-			svcs = append(svcs, microwebhook.New(url, store))
+			svcs = append(svcs, webhook.New(url, webhook.WithTokenUpdateTalley(store)))
 		}
 	}
 
