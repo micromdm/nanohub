@@ -167,7 +167,7 @@ NanoHUB's reference server simply "mounts" each components' API under its own we
   * For example to retrieve a list of declarations you would send a GET to `http://example.com:9004/api/v1/ddm/declarations` using the NanoHUB API key and normal KMFDDM HTTP API semantics.
   * Additionally the three read-only DDM "protocol" endpoints are also "mounted" here: `/api/v1/ddm/declaration-items`, `/api/v1/ddm/tokens`, and `/api/v1/ddm/declaration/{type}/{id}`. These mimic what an *actual device* might see when provided with the `X-Enrollment-ID` header.
 
-Please see the documentaiton for those individual components for more information. Note that some of these projects have helper tools and scripts which may need to be informed of both the new URL and the NanoHUB API username. Check out those individual projects tools to see how to change those settings if they support doing that.
+Please see the documentation for those individual components for more information. Note that some of these projects have helper tools and scripts which may need to be informed of both the new URL and the NanoHUB API username. Check out those individual projects tools to see how to change those settings if they support doing that.
 
 ### Native endpoints
 
