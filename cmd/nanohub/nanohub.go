@@ -18,6 +18,7 @@ import (
 	ddmhttp "github.com/jessepeterson/kmfddm/http/ddm"
 	"github.com/micromdm/nanocmd/engine"
 	cmdenghttp "github.com/micromdm/nanocmd/engine/http"
+	"github.com/micromdm/nanolib/envflag"
 	nanolibhttp "github.com/micromdm/nanolib/http"
 	"github.com/micromdm/nanolib/http/trace"
 	"github.com/micromdm/nanolib/log/stdlogfmt"
@@ -51,7 +52,7 @@ func main() {
 	var (
 		flListen     = flag.String("listen", ":9004", "HTTP listen address")
 		flCheckin    = flag.Bool("checkin", false, "enable separate HTTP endpoint for MDM check-ins")
-		flVersion    = flag.Bool("version", false, "print version")
+		flVersion    = flag.Bool("version", false, "print version and exit")
 		flDebug      = flag.Bool("debug", false, "log debug messages")
 		flStorage    = flag.String("storage", "file", "storage backend")
 		flDSN        = flag.String("storage-dsn", "", "storage backend data source name")
@@ -71,7 +72,7 @@ func main() {
 		flRetro      = flag.Bool("retro", false, "Allow retroactive certificate-authorization association")
 	)
 
-	flag.Parse()
+	envflag.Parse("NANOHUB_", []string{"version"})
 
 	if *flVersion {
 		fmt.Println(version)

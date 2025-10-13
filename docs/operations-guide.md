@@ -4,53 +4,70 @@ This is a brief overview of configuring and running the NanoHUB reference server
 
 NanoHUB adapts and unifies NanoMDM, NanoCMD, and KMFDDM into a single MDM server. You may want to explore those projects' documentation for specific operation.
 
-## Switches
+## Command line flags
 
-Command line switches for the `nanohub` reference server.
+Command line flags can be specified using command line arguments or environment variables (in NanoHUB versions later than v0.1). Flags take precedence over environment variables, which take precedence over default values. Environment variables are denoted in square brackets below (e.g., [HELLO]), and default values are shown in parentheses (e.g., (default "world")). If an environment variable is currently set then the help output will add "is set" as an indicator.
+
+### -h, -help
+
+Built-in flag that prints all other available flags, environment variables, and defaults.
 
 ### -api-key string
 
-* API key for API endpoints
+* API key for API endpoints [NANOHUB_API_KEY]
 
-API authentication in simply HTTP Basic authentication using "nanohub" as the username and the API key (from this switch) as the password.
+API authentication in simply HTTP Basic authentication using "nanohub" as the username and the API key (from this flag) as the password.
 
 ### -ca string
 
-* path to PEM CA cert(s)
+* path to PEM CA cert(s) [NANOHUB_CA]
 
 See the [`-ca` switch of NanoMDM](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#-ca-string). Operation should be very similar.
 
 ### -intermediate string
 
-* path to PEM intermediate cert(s)
+* path to PEM intermediate cert(s) [NANOHUB_INTERMEDIATE]
 
 See the [`-intermediate` switch of NanoMDM](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#-intermediate-string). Operation should be very similar.
 
 ### -cert-header string
 
-* HTTP header containing TLS client certificate
+* HTTP header containing TLS client certificate [NANOHUB_CERT_HEADER]
 
 See the [`-cert-header` switch of NanoMDM](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#-cert-header-string). Operation should be very similar. If this option is not specified then `Mdm-Signature` header extraction is used (which requires the `SignMessage` MDM enrollment profile key to be set to true.)
 
+### -checkin
+
+* enable separate HTTP endpoint for MDM check-ins [NANOHUB_CHECKIN]
+
+See the [`-checkin` switch of NanoMDM](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#-checkin). Operation should be very similar.
+
 ### -debug
 
-* log debug messages
+* log debug messages [NANOHUB_DEBUG]
 
 Enable additional debug logging.
 
 ### -dump
 
-* dump MDM requests and responses to stdout
+* dump MDM requests and responses to stdout [NANOHUB_DUMP]
 
 Dump MDM request bodies (i.e. complete Plists) to standard output for each request.
 
 ### -listen string
 
-* HTTP listen address (default ":9004")
+* HTTP listen address [NANOHUB_LISTEN] (default ":9004")
 
 Specifies the listen address (interface & port number) for the server to listen on.
 
 ### -storage, -storage-dsn, & -storage-options
+
+* -storage string
+  * storage backend [NANOHUB_STORAGE] (default "file")
+* -storage-dsn string
+  * storage backend data source name [NANOHUB_STORAGE_DSN]
+* -storage-options string
+  * storage backend options [NANOHUB_STORAGE_OPTIONS]
 
 The `-storage`, `-storage-dsn`, and `-storage-options` flags together configure the storage backend. `-storage` specifies the name of backend type while `-storage-dsn` specifies the backend data source name (e.g. the connection string). The optional `-storage-options` flag specifies options for the backend if it supports them. If no `-storage` backend is specified then `file` is used as a default.
 
@@ -84,45 +101,45 @@ Configures the `inmem` storage backend. Data is stored entirely in-memory and is
 
 ### -dmshard bool
 
-* enable DM shard management properties declaration
+* enable DM shard management properties declaration [NANOHUB_DMSHARD]
 
 Enable an always-on management properties declaration for every enrollment containing a `shard` payload key. See the [upstream docs](https://github.com/jessepeterson/kmfddm/blob/main/docs/operations-guide.md#-shard).
 
 ### -webhook-url string
 
-* URL to send requests to
+* URL to send requests to [NANOHUB_WEBHOOK_URL]
 
 NanoMDM supports a MicroMDM-compatible [webhook callback](https://github.com/micromdm/micromdm/blob/main/docs/user-guide/api-and-webhooks.md) option. This switch turns on the webhook and specifies the target URL.
 
 ### -auth-proxy-url string
 
-* Reverse proxy URL target for MDM-authenticated HTTP requests
+* Reverse proxy URL target for MDM-authenticated HTTP requests [NANOHUB_AUTH_PROXY_URL]
 
 Enables the authentication proxy and reverse proxies HTTP requests from the server's `/authproxy/` endpoints to this URL if the client provides the device's enrollment authentication. See [docs](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#authentication-proxy) for more.
 
 ### -ua-zl-dc bool
 
-* reply with zero-length DigestChallenge for UserAuthenticate
+* reply with zero-length DigestChallenge for UserAuthenticate [NANOHUB_UA_ZL_DC]
 
 By default NanoMDM will respond to a `UserAuthenticate` message with an HTTP 410. This effectively declines management of that the user channel for that MDM user. Enabling this option turns on the "zero-length" Digest Challenge mode where NanoMDM replies with an empty Digest Challenge to enable management each time a client enrolls. See [docs](https://github.com/micromdm/nanomdm/blob/main/docs/operations-guide.md#-ua-zl-dc) for more.
 
 ### -migration bool
 
-* HTTP endpoint for enrollment migrations
+* HTTP endpoint for enrollment migrations [NANOHUB_MIGRATION]
 
 NanoMDM supports a lossy form of MDM enrollment "migration." Essentially if a source MDM server can assemble enough of both Authenticate and TokenUpdate messages for an enrollment you can "migrate" enrollments by sending those Plist requests to the migration endpoint. Importantly this transfers the needed Push topic, token, and push magic to continue to send APNs push notifications to enrollments.
 
 ### -worker-interval uint
 
-* interval for worker in seconds
+* interval for worker in seconds [NANOHUB_WORKER_INTERVAL] (default 300)
 
 ### -repush-interval uint
 
-* interval for repushes in seconds
+* interval for repushes in seconds [NANOHUB_REPUSH_INTERVAL] (default 86400)
 
 ### -retro bool
 
-* Allow retroactive certificate-authorization association
+* Allow retroactive certificate-authorization association [NANOHUB_RETRO]
 
 By default NanoMDM disallows requests which did not have a certificate association setup in their Authenticate message. For new enrollments this is fine. However for enrollments that did not have a full Authenticate message (i.e. for enrollments that were migrated) they will lack such an association and be denied the ability to connect.
 
@@ -131,7 +148,7 @@ By default NanoMDM disallows requests which did not have a certificate associati
 
 ### -version
 
-* print version
+* print version and exit
 
 Print version and exit.
 
