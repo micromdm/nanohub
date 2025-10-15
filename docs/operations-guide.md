@@ -86,6 +86,8 @@ Configure the `file` storage backend. This backend manages MDM, DM, and workflow
 Configures the MySQL storage backend. The `-storage-dsn` flag should be in the [format the SQL driver expects](https://github.com/go-sql-driver/mysql#dsn-data-source-name).
 Be sure to create the storage tables with the `schema.sql` file from *each* of the three NanoMDM, NanoCMD, and KMFDDM projects. MySQL 8.0.19 or later is required.
 
+Note that you will need to create the MySQL schemas for all three of [NanoMDM](https://github.com/micromdm/nanomdm/blob/main/storage/mysql/schema.sql), [NanoCMD engine](https://github.com/micromdm/nanocmd/blob/main/engine/storage/mysql/schema.sql), and [KMFDDM](https://github.com/jessepeterson/kmfddm/blob/main/storage/mysql/schema.sql) in your database/DNS. Consult the [go.mod](../go.mod) file for which project versions correspond to your NanoHUB release. Also consult each of those projects' documentation and monitor release notes for schema changes.
+
 *Example:* `-storage mysql -storage-dsn nanohub:nanohub/mydb`
 
 #### inmem backend
