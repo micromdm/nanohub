@@ -36,6 +36,7 @@ import (
 	stgprof "github.com/micromdm/nanocmd/subsystem/profile/storage"
 	stgprofdiskv "github.com/micromdm/nanocmd/subsystem/profile/storage/diskv"
 	stgprofinmem "github.com/micromdm/nanocmd/subsystem/profile/storage/inmem"
+	stgprofmysql "github.com/micromdm/nanocmd/subsystem/profile/storage/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -158,6 +159,15 @@ func SubsystemStorage(storage, dsn string) (*subsystemStorage, error) {
 			profile:   stgprofdiskv.New(filepath.Join(dsn, "subsys-profile")),
 			cmdplan:   stgcmdplandiskv.New(filepath.Join(dsn, "subsys-cmdplan")),
 			filevault: fv,
+		}, nil
+	case "mysql":
+		prof, err := stgprofmysql.New(stgprofmysql.WithDSN(dsn))
+		if err != nil {
+			return nil, fmt.Errorf("creating profile subsystem storage: %w", err)
+		}
+
+		return &subsystemStorage{
+			profile: prof,
 		}, nil
 	}
 

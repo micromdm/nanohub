@@ -22,7 +22,6 @@ import (
 	nanolibhttp "github.com/micromdm/nanolib/http"
 	"github.com/micromdm/nanolib/http/trace"
 	"github.com/micromdm/nanolib/log/stdlogfmt"
-	nanohttp "github.com/micromdm/nanomdm/http"
 	nanoapi "github.com/micromdm/nanomdm/http/api"
 	"github.com/micromdm/nanomdm/http/authproxy"
 	"github.com/micromdm/nanomdm/mdm"
@@ -220,7 +219,7 @@ func main() {
 			return nanolibhttp.NewSimpleBasicAuthHandler(h, "nanohub", *flAPIKey, "NanoHUB API")
 		}
 
-		nanoMux := nanohttp.NewMWMux(http.NewServeMux())
+		nanoMux := nanolibhttp.NewMWMux(http.NewServeMux())
 		nanoMux.Use(authMW)
 		nanoapi.HandleAPIv1("", nanoMux, logger, store, pushService)
 		mux.Handle("/api/v1/nanomdm/",
