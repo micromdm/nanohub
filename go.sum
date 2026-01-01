@@ -20,8 +20,8 @@ github.com/jessepeterson/mdmcommands v0.0.0-20251210055310-75943edf7c59 h1:90W9H
 github.com/jessepeterson/mdmcommands v0.0.0-20251210055310-75943edf7c59/go.mod h1:EHxwKfMUtf7wNjF19BQQ/XCOvh62vbOXTggS9guNVxY=
 github.com/micromdm/nanocmd v0.7.0 h1:VZq3ZidRDHBhaiHVVOyJK0fPnC5o6pls7AuamuvbXhA=
 github.com/micromdm/nanocmd v0.7.0/go.mod h1:OydL67ZGEXMxKV9gMEDBvgRMigN3v6+OeBtqQPs6RrY=
-github.com/micromdm/nanolib v0.5.0 h1:+W40RfdSXzLiTYlJOGzgKTaKutfMSRv27NfnDnqDYAU=
-github.com/micromdm/nanolib v0.5.0/go.mod h1:FwBKCvvphgYvbdUZ+qw5kay7NHJcg6zPi8W7kXNajmE=
+github.com/micromdm/nanolib v0.5.1 h1:ZYXg9B6+aGSe0GjTO2HYolUT2GR6Kj4Oo2aDKQwShoE=
+github.com/micromdm/nanolib v0.5.1/go.mod h1:FwBKCvvphgYvbdUZ+qw5kay7NHJcg6zPi8W7kXNajmE=
 github.com/micromdm/nanomdm v0.9.0 h1:pXzThrNLLS4zip0yT7BlKkFNwXNpQowMmuYx4hXSDWw=
 github.com/micromdm/nanomdm v0.9.0/go.mod h1:NA7LYwaKDV6nQgHyKMFjka9yukpK+p5hxHmm7Bu2eLc=
 github.com/micromdm/plist v0.2.2 h1:a5Yt/coion6hwVEW0da8a5P8IyAchXZ6eC+oBA0uJW8=
