@@ -217,7 +217,7 @@ func New(store Store, opts ...Option) (*NanoHUB, error) {
 	if len(config.webhookURLs) >= 1 {
 		// configure any webhooks
 		for _, url := range config.webhookURLs {
-			svcs = append(svcs, webhook.New(url, webhook.WithTokenUpdateTalley(store)))
+			svcs = append(svcs, webhook.New(url, append(config.webhookOpts, webhook.WithTokenUpdateTalley(store))...))
 		}
 	}
 
