@@ -20,6 +20,7 @@ import (
 	nanoservice "github.com/micromdm/nanomdm/service"
 	"github.com/micromdm/nanomdm/service/certauth"
 	"github.com/micromdm/nanomdm/service/dump"
+	"github.com/micromdm/nanomdm/service/webhook"
 )
 
 // DMStore is the storage required to enable DM.
@@ -67,6 +68,7 @@ type config struct {
 	uazl      bool // UserAuthenticate Zero-Length Challenge mode
 
 	webhookURLs []string
+	webhookOpts []webhook.Option
 
 	svcs   []nanoservice.CheckinAndCommandService
 	pusher push.Pusher
@@ -301,6 +303,18 @@ func WithWebhook(url string) Option {
 
 	return func(c *config) error {
 		c.webhookURLs = append(c.webhookURLs, url)
+		return nil
+	}
+}
+
+// WithWebhookOption configures a MicroMDM-compatible webhook option for all webhook URLs.
+func WithWebhookOption(opt webhook.Option) Option {
+	if opt == nil {
+		panic("nil option")
+	}
+
+	return func(c *config) error {
+		c.webhookOpts = append(c.webhookOpts, opt)
 		return nil
 	}
 }

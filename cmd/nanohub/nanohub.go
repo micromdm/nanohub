@@ -27,6 +27,7 @@ import (
 	"github.com/micromdm/nanomdm/mdm"
 	"github.com/micromdm/nanomdm/push/nanopush"
 	pushservice "github.com/micromdm/nanomdm/push/service"
+	"github.com/micromdm/nanomdm/service/webhook"
 )
 
 // overridden by -ldflags -X
@@ -69,6 +70,7 @@ func main() {
 		flWorkSec    = flag.Uint("worker-interval", uint(engine.DefaultDuration/time.Second), "interval for worker in seconds")
 		flPushSec    = flag.Uint("repush-interval", uint(engine.DefaultRePushDuration/time.Second), "interval for repushes in seconds")
 		flRetro      = flag.Bool("retro", false, "Allow retroactive certificate-authorization association")
+		flWHHMACKey  = flag.String("webhook-hmac-key", "", "attaches an HMAC HTTP header to each webhook request using this key")
 	)
 
 	envflag.Parse("NANOHUB_", []string{"version"})
@@ -156,6 +158,10 @@ func main() {
 
 	if *flWebhookURL != "" {
 		hubOpts = append(hubOpts, nanohub.WithWebhook(*flWebhookURL))
+
+		if *flWHHMACKey != "" {
+			hubOpts = append(hubOpts, nanohub.WithWebhookOption(webhook.WithHMACSecret([]byte(*flWHHMACKey))))
+		}
 	}
 
 	if *flMigration {
