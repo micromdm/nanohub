@@ -162,10 +162,10 @@ NanoHUB's reference server simply "mounts" each components' API under its own we
 
 * The normal [NanoMDM](https://github.com/micromdm/nanomdm/) API is available under the `/api/v1/nanomdm/` path.
   * For example to send an APNs push to ID `9876-5432-1012` you would send a request to `http://example.com:9004/api/v1/nanomdm/push/9876-5432-1012` using the NanoHUB API key and normal NanoMDM HTTP API semantics.
-* The normal [NanoCMD](https://github.com/micromdm/nanocmd) API is avilable under the `/api/v1/nanocmd/` path.
+* The normal [NanoCMD](https://github.com/micromdm/nanocmd) API is available under the `/api/v1/nanocmd/` path.
   * For example to start the workflow [io.micromdm.wf.devinfolog.v1](https://github.com/micromdm/nanocmd/blob/main/docs/operations-guide.md#device-information-logger-workflow) on ID `9876-5432-1012` you would send a POST request to `http://example.com:9004/api/v1/nanocmd/workflow/io.micromdm.wf.devinfolog.v1/start?id=9876-5432-1012` using the NanoHUB API key and normal NanoCMD HTTP API semantics.
   * This also includes the "subsystem" API endpoints. For example to retrieve the FileVault Enable profile template you would send a GET to `http://example.com:9004/api/v1/nanocmd/fvenable/profiletemplate`.
-* The normal [KMFDDM](https://github.com/jessepeterson/kmfddm) API is availabl under the `/api/v1/ddm/` path.
+* The normal [KMFDDM](https://github.com/jessepeterson/kmfddm) API is available under the `/api/v1/ddm/` path.
   * For example to retrieve a list of declarations you would send a GET to `http://example.com:9004/api/v1/ddm/declarations` using the NanoHUB API key and normal KMFDDM HTTP API semantics.
   * Additionally the three read-only DDM "protocol" endpoints are also "mounted" here: `/api/v1/ddm/declaration-items`, `/api/v1/ddm/tokens`, and `/api/v1/ddm/declaration/{type}/{id}`. These mimic what an *actual device* might see when provided with the `X-Enrollment-ID` header.
 
