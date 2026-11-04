@@ -7,10 +7,10 @@ require (
 	github.com/cespare/xxhash v1.1.0
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/jessepeterson/kmfddm v0.8.3
-	github.com/micromdm/nanocmd v0.7.0
+	github.com/micromdm/nanocmd v0.7.1
 	github.com/micromdm/nanolib v0.5.2
 	github.com/micromdm/nanomdm v0.9.0
-	github.com/micromdm/plist v0.3.0
+	github.com/micromdm/plist v0.4.0
 	github.com/valyala/fastjson v1.6.7
 )
 
@@ -20,8 +20,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/jessepeterson/mdmcommands v0.0.0-20251210055310-75943edf7c59 // indirect
 	github.com/peterbourgon/diskv/v3 v3.0.1 // indirect
-	github.com/smallstep/pkcs7 v0.2.1 // indirect
-	golang.org/x/crypto v0.33.0 // indirect
+	github.com/smallstep/pkcs7 v0.2.3 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 )
